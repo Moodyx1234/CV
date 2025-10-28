@@ -25,12 +25,12 @@ const translations = {
             programming: [
                 { name: "SQL", icon: "database", color: "text-blue-400" }, 
                 { name: "Python (جاري التعلم)", icon: "code", color: "text-yellow-400" }, 
-                { name: "HTML (جاري التعلم)", icon: "figma", color: "text-red-500" }, 
+                { name: "HTML (جاري التعلم)", icon: "square-stack", color: "text-red-500" }, 
                 { name: "CSS (جاري التعلم)", icon: "palette", color: "text-sky-400" }, 
                 { name: "JavaScript (جاري التعلم)", icon: "zap", color: "text-amber-400" }
             ],
             design: [
-                { name: "Figma (تصميم UI/UX)", icon: "square-stack", color: "text-pink-500" } 
+                { name: "Figma (تصميم UI/UX)", icon: "figma", color: "text-pink-500" } 
             ],
             soft: [
                 { name: "العمل الجماعي", icon: "users", color: "text-emerald-400" }, 
