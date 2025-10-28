@@ -62,6 +62,7 @@ body {
 /* 2. أنماط Glassmorphism للبطاقات (Card Styles) */
 .glass-card {
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
     border-radius: 16px;
     transition: all 0.3s ease-in-out;
 }
@@ -92,7 +93,7 @@ body {
 .dark h1, .dark h2 { font-family: 'Inter', sans-serif; color: #d1d5db; }
 .dark .text-highlight { color: #38bdf8; } /* Sky 400 */
 .dark .text-secondary { color: #9ca3af; } /* Gray 400 */
-.dark .footer-text { color: #4b5563; } /* Gray 600 */
+.dark .footer-text { color: #6b7280; } /* Gray 500 - Adjusted for better contrast */
 
 .light h1, .light h2 { font-family: 'Inter', sans-serif; color: #1f2937; } /* Gray 900 */
 .light .text-highlight { color: #059669; } /* Emerald 600 */
@@ -108,17 +109,19 @@ body {
      background-color: #374151; /* Gray 700 */
      color: #d1d5db; /* Gray 300 */
 }
-.dark .skill-badge:hover {
+.dark .skill-badge:hover, .dark .skill-badge:active { /* Added :active for touch */
      background-color: #38bdf8; /* Sky 400 */
      color: #1f2937; /* Gray 900 */
+     transform: scale(1.05); /* Slight scale on interaction */
 }
 .light .skill-badge {
      background-color: #e5e7eb; /* Gray 200 */
      color: #1f2937; /* Gray 900 */
 }
-.light .skill-badge:hover {
+.light .skill-badge:hover, .light .skill-badge:active { /* Added :active for touch */
      background-color: #059669; /* Emerald 600 */
      color: #ffffff;
+     transform: scale(1.05); /* Slight scale on interaction */
 }
 
 /* 5. الخط الزمني (Timeline) */
@@ -153,7 +156,7 @@ body {
     color: white; 
 }
 .light #x-button img {
-    filter: none; /* عكس الصورة (الأبيض يصبح أسود) */
+    filter: invert(100%); /* عكس الصورة (الأبيض يصبح أسود) */
 }
 .dark #x-button img {
     filter: none; /* إزالة الانعكاس، الصورة البيضاء تبقى بيضاء */
@@ -163,11 +166,13 @@ body {
 .nav-controls {
     /* نستخدم gap لضمان التباعد في كلتا اللغتين */
     display: flex;
-    gap: 1rem; /* مسافة افتراضية بين الأزرار */
+    align-items: center; /* Ensure vertical alignment */
+    gap: 1.5rem; /* تم زيادة المسافة لضمان فصل واضح (24px) */
 }
-html[dir="rtl"] .nav-controls {
-    flex-direction: row; /* التأكد من أن الترتيب يظل صحيحاً في RTL */
-    /* الاعتماد على gap بدلاً من margin-left */
+/* Ensure globe button is perfectly round */
+.lang-toggle-button {
+    border-radius: 9999px; /* Ensure full roundness */
+    overflow: hidden; /* Clip any potential overflow */
 }
 
 
@@ -191,5 +196,46 @@ html[dir="rtl"] .nav-controls {
 .light .nav-link:hover {
     color: #059669;
     border-bottom-color: #059669;
+}
+
+/* MOBILE MENU STYLES */
+.mobile-menu {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(-10px); /* Start slightly up */
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+.mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto; /* Allow interaction when open */
+    display: block !important; /* Force display when open */
+}
+
+/* Dark Mobile Menu Link Styles */
+.dark .mobile-nav-link {
+    color: #d1d5db; /* Lighter gray for readability */
+    padding: 0.75rem 0; /* Add padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dark .mobile-nav-link:hover {
+    color: #38bdf8; /* Highlight color */
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle hover background */
+}
+
+/* Light Mobile Menu Link Styles */
+.light .mobile-nav-link {
+    color: #1f2937; /* Dark text */
+    padding: 0.75rem 0; /* Add padding */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.light .mobile-nav-link:hover {
+    color: #059669; /* Highlight color */
+    background-color: rgba(0, 0, 0, 0.05); /* Subtle hover background */
+}
+
+/* Remove border from last mobile link */
+.mobile-menu div a:last-child {
+    border-bottom: none;
 }
 
