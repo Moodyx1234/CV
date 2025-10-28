@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">السيرة الذاتية - مؤيد فقيه</title>
+    <!-- تحميل خطوط Google: Inter (إنجليزي) و Cairo (عربي) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <!-- تحميل مكتبة Tailwind CSS للأنماط -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- تحميل أيقونات Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- ربط بملف الأنماط المخصص -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="pageTop" class="p-4 sm:p-8 transition-all duration-500">
+
+    <!-- الخلفية المتحركة (Blobs) -->
+    <div class="background-blobs">
+        <div class="blob-1"></div>
+        <div class="blob-2"></div>
+        <div class="blob-3"></div>
+    </div>
+
+    <!-- شريط التنقل (Header) -->
+    <header class="fixed top-0 left-0 right-0 z-50 p-4">
+        <nav class="glass-card flex justify-between items-center max-w-5xl mx-auto px-4 py-3">
+            
+            <!-- ربط الاسم برأس الصفحة -->
+            <a href="#pageTop" class="text-xl font-bold tracking-wider text-highlight hidden sm:block cursor-pointer" id="navName">مؤيد فقيه</a>
+
+            <!-- قائمة التنقل الجديدة (الوسط) -->
+            <div class="flex-grow justify-center hidden sm:flex space-x-8 rtl:space-x-reverse" id="desktopNavLinks">
+                <a href="#summary" class="nav-link" data-key="nav_summary">الملخص</a>
+                <a href="#skills" class="nav-link" data-key="nav_skills">المهارات</a>
+                <a href="#accomplishments" class="nav-link" data-key="nav_accomplishments">الإنجازات</a>
+            </div>
+
+            <!-- أزرار التحكم (اللغة والثيم) -->
+            <div class="flex items-center nav-controls">
+                <!-- زر تبديل اللغة -->
+                <button id="langToggle" class="flex items-center text-sm font-semibold p-2 rounded-full bg-sky-600 hover:bg-sky-500 text-white transition duration-300">
+                    <i data-lucide="globe" class="w-4 h-4 rtl:ml-1 rtl:mr-0"></i>
+                    <span class="hidden sm:inline-block rtl:mr-1 rtl:ml-0" id="langButtonText">English</span>
+                </button>
+                <!-- زر الوضع الداكن/الفاتح -->
+                <button id="themeToggle" class="p-2 rounded-full text-white bg-gray-700 hover:bg-gray-600 transition duration-300">
+                    <i data-lucide="sun" class="w-4 h-4" id="themeIcon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto space-y-12 mt-24">
+
+        <!-- القسم الرئيسي (Hero Section) -->
+        <section id="hero" class="glass-card p-8 sm:p-12 text-center relative overflow-hidden">
+            <div class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-sky-400 overflow-hidden shadow-xl">
+                <!-- Placeholder Image - يجب استبدال الرابط بصورتك الشخصية -->
+                <img src="https://placehold.co/128x128/38bdf8/ffffff?text=MF" alt="صورة مؤيد فقيه" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/38bdf8/ffffff?text=MF';">
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-2" id="heroTitle">مؤيد إبراهيم فقيه</h1>
+            <p class="text-xl sm:text-2xl font-light text-highlight mb-6" id="heroSubtitle">طالب علوم حاسب | مطور برمجيات وألعاب</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-center">
+                 <a href="https://www.linkedin.com/in/moayad-faqih/" target="_blank" class="flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-sky-600 hover:bg-sky-700 text-white font-semibold transition duration-300 text-sm">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+                </a>
+                <a href="mailto:Moodyx2015@gmail.com" class="flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-gray-700 hover:bg-gray-600 text-white font-semibold transition duration-300 text-sm">
+                    <i data-lucide="mail" class="w-4 h-4"></i> <span class="hidden sm:inline-block">Moodyx2015@gmail.com</span>
+                </a>
+                <a id="x-button" href="https://twitter.com/Moayd_if" target="_blank" class="flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-gray-700 hover:bg-gray-600 text-white font-semibold transition duration-300 text-sm">
+                    <!-- Base64 Image of X logo, originally white on black -->
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQed+cAAAABlBMVEUAAAD///+l2Z/dAAAAEUlEQVQokWNgGAWjYBSMglEAAA+QAB2bSgQSAAAAAElFTkSuQmCC" alt="X Logo" class="w-4 h-4" />
+                    X
+                </a>
+            </div>
+        </section>
+
+        <!-- النبذة التعريفية (Summary) -->
+        <section id="summary" class="glass-card p-8">
+            <h2 class="text-3xl font-bold mb-6 border-b pb-2 border-gray-700 text-highlight" data-key="section_summary">الملخص الاحترافي</h2>
+            <p class="text-lg leading-relaxed text-secondary" data-key="summary_content">
+                طالب علوم حاسب متحمس بشدة للتكنولوجيا، مع تركيز متزايد على **تطوير الويب الحديث (HTML/CSS/JS)** وتطوير الألعاب. ملتزم بالتعلم الذاتي المستمر وتطبيق المعرفة في مسابقات الهاكاثون رفيعة المستوى مثل هاكاثون سدايا و GovJam 2024. أظهرت الخبرة في هذه الفعاليات مهارات قوية في العمل الجماعي، وإدارة المشاريع، وحل المشكلات، وتصميم UI/UX باستخدام Figma. أهدف إلى الابتكار وتطوير براءات الاختراع وتأسيس شركة تقنية رائدة.
+            </p>
+        </section>
+
+        <!-- المهارات (Skills - Pill Badges) -->
+        <section id="skills" class="glass-card p-8">
+            <h2 class="text-3xl font-bold mb-6 border-b pb-2 border-gray-700 text-highlight" data-key="section_skills">المهارات والتقنيات</h2>
+            
+            <div class="space-y-6">
+                <!-- لغات البرمجة -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-sky-400" data-key="skills_tech_label">لغات البرمجة</h3>
+                    <div class="flex flex-wrap gap-3" id="programmingSkills">
+                        <!-- تملأ بواسطة JS -->
+                    </div>
+                </div>
+                
+                <!-- الأدوات والتصميم -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-sky-400" data-key="skills_tools_label">الأدوات والتصميم</h3>
+                    <div class="flex flex-wrap gap-3" id="designSkills">
+                         <!-- تملأ بواسطة JS -->
+                    </div>
+                </div>
+
+                <!-- المهارات الشخصية -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-sky-400" data-key="skills_soft_label">المهارات الشخصية</h3>
+                    <div class="flex flex-wrap gap-3" id="softSkills">
+                         <!-- تملأ بواسطة JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- الإنجازات والتعليم (Timeline View) -->
+        <section id="accomplishments" class="glass-card p-8">
+            <h2 class="text-3xl font-bold mb-8 border-b pb-2 border-gray-700 text-highlight" data-key="section_accomplishments">الإنجازات والتعليم</h2>
+            
+            <div class="space-y-8">
+                <!-- سجل الإنجازات -->
+                <div class="relative">
+                    <h3 class="text-2xl font-bold mb-4 text-sky-400" data-key="timeline_achievements">سجل الإنجازات</h3>
+                    <div id="commitLog" class="relative">
+                        <!-- يتم ملؤها بواسطة JS -->
+                    </div>
+                </div>
+
+                <!-- التعليم -->
+                <div class="relative">
+                    <h3 class="text-2xl font-bold mb-4 text-sky-400" data-key="timeline_education">التعليم</h3>
+                    <div id="educationLog" class="relative">
+                         <!-- يتم ملؤها بواسطة JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="mt-12 text-center text-sm footer-text">
+        <p>&copy; 2024 <span data-key="footer_name">مؤيد فقيه</span>. <span data-key="footer_rights">Glassmorphism UI</span></p>
+    </footer>
+
+    <!-- ربط بملف JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
