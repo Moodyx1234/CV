@@ -3,7 +3,7 @@ const translations = {
     ar: {
         pageTitle: "السيرة الذاتية - مؤيد فقيه",
         navName: "مؤيد فقيه",
-        langButtonText: "English",
+        langButtonText: "English", // النص الذي سيظهر للانتقال للإنجليزية
         heroTitle: "مؤيد إبراهيم فقيه",
         heroSubtitle: "طالب علوم حاسب | مطور برمجيات وألعاب",
         section_summary: "الملخص الاحترافي",
@@ -25,12 +25,12 @@ const translations = {
             programming: [
                 { name: "SQL", icon: "database", color: "text-blue-400" }, 
                 { name: "Python (جاري التعلم)", icon: "code", color: "text-yellow-400" }, 
-                { name: "HTML (جاري التعلم)", icon: "square-stack", color: "text-red-500" }, 
+                { name: "HTML (جاري التعلم)", icon: "figma", color: "text-red-500" }, 
                 { name: "CSS (جاري التعلم)", icon: "palette", color: "text-sky-400" }, 
                 { name: "JavaScript (جاري التعلم)", icon: "zap", color: "text-amber-400" }
             ],
             design: [
-                { name: "Figma (تصميم UI/UX)", icon: "figma", color: "text-pink-500" } 
+                { name: "Figma (تصميم UI/UX)", icon: "square-stack", color: "text-pink-500" } 
             ],
             soft: [
                 { name: "العمل الجماعي", icon: "users", color: "text-emerald-400" }, 
@@ -53,7 +53,7 @@ const translations = {
     en: {
         pageTitle: "CV - Moayad Faqih (Glassmorphism)",
         navName: "Moayad Faqih",
-        langButtonText: "العربية",
+        langButtonText: "العربية", // النص الذي سيظهر للانتقال للعربية
         heroTitle: "Moayad Ibrahim Faqih",
         heroSubtitle: "Computer Science Student | Software & Game Developer",
         section_summary: "Professional Summary",
@@ -75,12 +75,12 @@ const translations = {
             programming: [
                 { name: "SQL", icon: "database", color: "text-blue-400" },
                 { name: "Python (In Progress)", icon: "code", color: "text-yellow-400" },
-                { name: "HTML (In Progress)", icon: "square-stack", color: "text-red-500" },
+                { name: "HTML (In Progress)", icon: "figma", color: "text-red-500" },
                 { name: "CSS (In Progress)", icon: "palette", color: "text-sky-400" },
                 { name: "JavaScript (In Progress)", icon: "zap", color: "text-amber-400" }
             ],
             design: [
-                { name: "Figma (UI/UX Design)", icon: "figma", color: "text-pink-500" }
+                { name: "Figma (UI/UX Design)", icon: "square-stack", color: "text-pink-500" }
             ],
             soft: [
                 { name: "Teamwork", icon: "users", color: "text-emerald-400" }, 
@@ -174,7 +174,8 @@ function switchTheme() {
         currentTheme = 'dark';
     }
     localStorage.setItem('portfolioTheme', currentTheme);
-    updateContent(); // إعادة تحديث المحتوى لتطبيق أنماط الثيم (خصوصاً الألوان النصية والقوائم)
+    // يجب إعادة تحديث المحتوى لتطبيق أنماط الثيم على العناصر المولدة ديناميكياً
+    updateContent(); 
 }
 
 /**
@@ -184,6 +185,26 @@ function switchLanguage() {
     currentLang = (currentLang === 'ar') ? 'en' : 'ar';
     localStorage.setItem('portfolioLang', currentLang);
     updateContent();
+}
+
+/**
+ * فتح قائمة الجوال
+ */
+function openMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.remove('hidden');
+    // استخدام مهلة لتمكين انتقال الأوباسيتي
+    setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10); 
+}
+
+/**
+ * إغلاق قائمة الجوال
+ */
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.add('opacity-0');
+    // استخدام مهلة لانتهاء انتقال الأوباسيتي قبل إخفاء العنصر
+    setTimeout(() => mobileMenu.classList.add('hidden'), 300); 
 }
 
 /**
@@ -203,7 +224,12 @@ function updateContent() {
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (langData[key]) {
-            el.textContent = langData[key];
+            // نستخدم innerHTML هنا فقط للفقرة التي تحتوي على تنسيق Markdown (bold)
+            if (key === 'summary_content') {
+                el.innerHTML = langData[key];
+            } else {
+                 el.textContent = langData[key];
+            }
         }
     });
 
@@ -214,7 +240,7 @@ function updateContent() {
     document.getElementById('heroSubtitle').textContent = langData.heroSubtitle;
 
 
-    // 3. إعادة بناء قائمة المهارات (مع الشعارات الجديدة)
+    // 3. إعادة بناء قائمة المهارات
     const skillsContainerMap = {
         programmingSkills: langData.skills_list.programming,
         designSkills: langData.skills_list.design,
@@ -264,28 +290,42 @@ window.onload = function() {
     const themeIcon = document.getElementById('themeIcon');
 
     if (savedTheme === 'light') {
-        // Apply light theme classes and icon
         htmlElement.classList.remove('dark');
         htmlElement.classList.add('light');
         themeIcon.setAttribute('data-lucide', 'moon');
+        currentTheme = 'light';
     } else {
          // Default is Dark Mode
         htmlElement.classList.remove('light');
         htmlElement.classList.add('dark');
         themeIcon.setAttribute('data-lucide', 'sun');
+        currentTheme = 'dark';
     }
 
     // 3. تطبيق الحالة
     updateContent();
 
-    // 4. ربط الأزرار
+    // 4. ربط الأزرار والـ Event Listeners
     document.getElementById('langToggle').addEventListener('click', switchLanguage);
     document.getElementById('themeToggle').addEventListener('click', switchTheme);
     
-    // 5. جعل الروابط الأقسام تعمل بسلاسة
+    // ربط أزرار قائمة الجوال
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMobileMenu);
+    
+    const closeMenuButton = document.getElementById('closeMenuButton');
+    if (closeMenuButton) closeMenuButton.addEventListener('click', closeMobileMenu);
+    
+    // 5. جعل الروابط الأقسام تعمل بسلاسة وإغلاق قائمة الجوال
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
+            
+            // إغلاق قائمة الجوال إذا تم الضغط على رابط من داخلها
+            if (this.classList.contains('mobile-nav-link')) {
+                closeMobileMenu();
+            }
+
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
