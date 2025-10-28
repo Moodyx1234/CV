@@ -26,20 +26,27 @@
     <header class="fixed top-0 left-0 right-0 z-50 p-4">
         <nav class="glass-card flex justify-between items-center max-w-5xl mx-auto px-4 py-3">
             
-            <!-- ربط الاسم برأس الصفحة (يظهر دائماً الآن) -->
-            <a href="#pageTop" class="text-xl font-bold tracking-wider text-highlight cursor-pointer" id="navName">مؤيد فقيه</a>
+            <!-- ربط الاسم برأس الصفحة -->
+            <a href="#pageTop" class="text-xl font-bold tracking-wider text-highlight hidden sm:block cursor-pointer" id="navName">مؤيد فقيه</a>
 
-            <!-- قائمة التنقل الجديدة (الوسط) - مخفية على الجوال -->
+            <!-- زر القائمة للجوال -->
+            <button id="mobileMenuButton" class="sm:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <span class="sr-only">Open main menu</span>
+                <i data-lucide="menu" class="block h-6 w-6" id="menuIconOpen"></i>
+            </button>
+
+
+            <!-- قائمة التنقل الجديدة (الوسط) - سطح المكتب -->
             <div class="flex-grow justify-center hidden sm:flex space-x-8 rtl:space-x-reverse" id="desktopNavLinks">
                 <a href="#summary" class="nav-link" data-key="nav_summary">الملخص</a>
                 <a href="#skills" class="nav-link" data-key="nav_skills">المهارات</a>
                 <a href="#accomplishments" class="nav-link" data-key="nav_accomplishments">الإنجازات</a>
             </div>
 
-            <!-- أزرار التحكم (اللغة والثيم والقائمة) -->
-            <div class="flex items-center nav-controls gap-3">
-                <!-- زر تبديل اللغة (يظهر النص فقط على سطح المكتب) -->
-                <button id="langToggle" class="flex items-center text-sm font-semibold p-2 rounded-full bg-sky-600 hover:bg-sky-500 text-white transition duration-300">
+            <!-- أزرار التحكم (اللغة والثيم) -->
+            <div class="flex items-center nav-controls">
+                <!-- زر تبديل اللغة -->
+                <button id="langToggle" class="lang-toggle-button flex items-center text-sm font-semibold p-2 rounded-full bg-sky-600 hover:bg-sky-500 text-white transition duration-300">
                     <i data-lucide="globe" class="w-4 h-4 rtl:ml-1 rtl:mr-0"></i>
                     <span class="hidden sm:inline-block rtl:mr-1 rtl:ml-0" id="langButtonText">English</span>
                 </button>
@@ -47,29 +54,18 @@
                 <button id="themeToggle" class="p-2 rounded-full text-white bg-gray-700 hover:bg-gray-600 transition duration-300">
                     <i data-lucide="sun" class="w-4 h-4" id="themeIcon"></i>
                 </button>
-                
-                <!-- زر قائمة الجوال (يظهر فقط على الجوال) -->
-                <button id="mobileMenuButton" class="p-2 rounded-full text-white bg-gray-700 hover:bg-gray-600 transition duration-300 sm:hidden">
-                    <i data-lucide="menu" class="w-4 h-4"></i>
-                </button>
             </div>
         </nav>
-    </header>
 
-    <!-- قائمة الجوال المنبثقة (Overlay) -->
-    <div id="mobileMenu" class="fixed inset-0 z-40 bg-black/90 backdrop-blur-xl hidden transition-opacity duration-300 opacity-0">
-        <div class="flex flex-col h-full p-6 items-center justify-center space-y-10">
-            <!-- زر إغلاق -->
-            <button id="closeMenuButton" class="absolute top-6 right-6 p-3 rounded-full text-white hover:bg-gray-700 transition">
-                <i data-lucide="x" class="w-8 h-8"></i>
-            </button>
-            <!-- روابط القائمة -->
-            <a href="#summary" class="mobile-nav-link text-4xl font-extrabold text-sky-400 hover:text-white transition duration-200" data-key="nav_summary">الملخص</a>
-            <a href="#skills" class="mobile-nav-link text-4xl font-extrabold text-sky-400 hover:text-white transition duration-200" data-key="nav_skills">المهارات</a>
-            <a href="#accomplishments" class="mobile-nav-link text-4xl font-extrabold text-sky-400 hover:text-white transition duration-200" data-key="nav_accomplishments">الإنجازات</a>
+        <!-- القائمة المنبثقة للجوال -->
+        <div id="mobileMenu" class="mobile-menu hidden sm:hidden glass-card absolute top-full left-0 right-0 mx-4 mt-2 p-4 rounded-lg shadow-lg">
+            <div class="flex flex-col space-y-4">
+                 <a href="#summary" class="nav-link text-center mobile-nav-link" data-key="nav_summary">الملخص</a>
+                 <a href="#skills" class="nav-link text-center mobile-nav-link" data-key="nav_skills">المهارات</a>
+                 <a href="#accomplishments" class="nav-link text-center mobile-nav-link" data-key="nav_accomplishments">الإنجازات</a>
+            </div>
         </div>
-    </div>
-
+    </header>
 
     <main class="max-w-5xl mx-auto space-y-12 mt-24">
 
@@ -169,3 +165,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
