@@ -109,7 +109,8 @@ body {
      background-color: #374151; /* Gray 700 */
      color: #d1d5db; /* Gray 300 */
 }
-.dark .skill-badge:hover, .dark .skill-badge:active { /* Added :active for touch */
+/* Apply hover AND active styles */
+.dark .skill-badge:hover, .dark .skill-badge:active { 
      background-color: #38bdf8; /* Sky 400 */
      color: #1f2937; /* Gray 900 */
      transform: scale(1.05); /* Slight scale on interaction */
@@ -118,7 +119,8 @@ body {
      background-color: #e5e7eb; /* Gray 200 */
      color: #1f2937; /* Gray 900 */
 }
-.light .skill-badge:hover, .light .skill-badge:active { /* Added :active for touch */
+/* Apply hover AND active styles */
+.light .skill-badge:hover, .light .skill-badge:active { 
      background-color: #059669; /* Emerald 600 */
      color: #ffffff;
      transform: scale(1.05); /* Slight scale on interaction */
@@ -218,7 +220,7 @@ body {
     padding: 0.75rem 0; /* Add padding */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-.dark .mobile-nav-link:hover {
+.dark .mobile-nav-link:hover, .dark .mobile-nav-link:active { /* Added :active */
     color: #38bdf8; /* Highlight color */
     background-color: rgba(255, 255, 255, 0.05); /* Subtle hover background */
 }
@@ -229,7 +231,7 @@ body {
     padding: 0.75rem 0; /* Add padding */
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.light .mobile-nav-link:hover {
+.light .mobile-nav-link:hover, .light .mobile-nav-link:active { /* Added :active */
     color: #059669; /* Highlight color */
     background-color: rgba(0, 0, 0, 0.05); /* Subtle hover background */
 }
