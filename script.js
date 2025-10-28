@@ -3,7 +3,7 @@ const translations = {
     ar: {
         pageTitle: "السيرة الذاتية - مؤيد فقيه",
         navName: "مؤيد فقيه",
-        langButtonText: "English", // النص الذي سيظهر للانتقال للإنجليزية
+        langButtonText: "English",
         heroTitle: "مؤيد إبراهيم فقيه",
         heroSubtitle: "طالب علوم حاسب | مطور برمجيات وألعاب",
         section_summary: "الملخص الاحترافي",
@@ -25,12 +25,12 @@ const translations = {
             programming: [
                 { name: "SQL", icon: "database", color: "text-blue-400" }, 
                 { name: "Python (جاري التعلم)", icon: "code", color: "text-yellow-400" }, 
-                { name: "HTML (جاري التعلم)", icon: "figma", color: "text-red-500" }, 
+                { name: "HTML (جاري التعلم)", icon: "square-stack", color: "text-red-500" }, 
                 { name: "CSS (جاري التعلم)", icon: "palette", color: "text-sky-400" }, 
                 { name: "JavaScript (جاري التعلم)", icon: "zap", color: "text-amber-400" }
             ],
             design: [
-                { name: "Figma (تصميم UI/UX)", icon: "square-stack", color: "text-pink-500" } 
+                { name: "Figma (تصميم UI/UX)", icon: "figma", color: "text-pink-500" } 
             ],
             soft: [
                 { name: "العمل الجماعي", icon: "users", color: "text-emerald-400" }, 
@@ -53,7 +53,7 @@ const translations = {
     en: {
         pageTitle: "CV - Moayad Faqih (Glassmorphism)",
         navName: "Moayad Faqih",
-        langButtonText: "العربية", // النص الذي سيظهر للانتقال للعربية
+        langButtonText: "العربية",
         heroTitle: "Moayad Ibrahim Faqih",
         heroSubtitle: "Computer Science Student | Software & Game Developer",
         section_summary: "Professional Summary",
@@ -75,12 +75,12 @@ const translations = {
             programming: [
                 { name: "SQL", icon: "database", color: "text-blue-400" },
                 { name: "Python (In Progress)", icon: "code", color: "text-yellow-400" },
-                { name: "HTML (In Progress)", icon: "figma", color: "text-red-500" },
+                { name: "HTML (In Progress)", icon: "square-stack", color: "text-red-500" },
                 { name: "CSS (In Progress)", icon: "palette", color: "text-sky-400" },
                 { name: "JavaScript (In Progress)", icon: "zap", color: "text-amber-400" }
             ],
             design: [
-                { name: "Figma (UI/UX Design)", icon: "square-stack", color: "text-pink-500" }
+                { name: "Figma (UI/UX Design)", icon: "figma", color: "text-pink-500" }
             ],
             soft: [
                 { name: "Teamwork", icon: "users", color: "text-emerald-400" }, 
@@ -174,8 +174,7 @@ function switchTheme() {
         currentTheme = 'dark';
     }
     localStorage.setItem('portfolioTheme', currentTheme);
-    // يجب إعادة تحديث المحتوى لتطبيق أنماط الثيم على العناصر المولدة ديناميكياً
-    updateContent(); 
+    updateContent(); // إعادة تحديث المحتوى لتطبيق أنماط الثيم (خصوصاً الألوان النصية والقوائم)
 }
 
 /**
@@ -185,26 +184,6 @@ function switchLanguage() {
     currentLang = (currentLang === 'ar') ? 'en' : 'ar';
     localStorage.setItem('portfolioLang', currentLang);
     updateContent();
-}
-
-/**
- * فتح قائمة الجوال
- */
-function openMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.classList.remove('hidden');
-    // استخدام مهلة لتمكين انتقال الأوباسيتي
-    setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10); 
-}
-
-/**
- * إغلاق قائمة الجوال
- */
-function closeMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.classList.add('opacity-0');
-    // استخدام مهلة لانتهاء انتقال الأوباسيتي قبل إخفاء العنصر
-    setTimeout(() => mobileMenu.classList.add('hidden'), 300); 
 }
 
 /**
@@ -220,27 +199,22 @@ function updateContent() {
     htmlElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
     document.body.style.fontFamily = isRTL ? 'Cairo, sans-serif' : 'Inter, sans-serif';
 
-    // 2. تحديث النصوص العامة
+    // 2. تحديث النصوص العامة (بما في ذلك روابط القائمة)
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (langData[key]) {
-            // نستخدم innerHTML هنا فقط للفقرة التي تحتوي على تنسيق Markdown (bold)
-            if (key === 'summary_content') {
-                el.innerHTML = langData[key];
-            } else {
-                 el.textContent = langData[key];
-            }
+            el.textContent = langData[key];
         }
     });
 
     document.getElementById('pageTitle').textContent = langData.pageTitle;
-    document.getElementById('navName').textContent = langData.navName;
+    document.getElementById('navName').textContent = langData.navName; // Update desktop nav name
     document.getElementById('langButtonText').textContent = langData.langButtonText;
     document.getElementById('heroTitle').textContent = langData.heroTitle;
     document.getElementById('heroSubtitle').textContent = langData.heroSubtitle;
 
 
-    // 3. إعادة بناء قائمة المهارات
+    // 3. إعادة بناء قائمة المهارات (مع الشعارات الجديدة)
     const skillsContainerMap = {
         programmingSkills: langData.skills_list.programming,
         designSkills: langData.skills_list.design,
@@ -274,6 +248,35 @@ function updateContent() {
     lucide.createIcons();
 }
 
+/**
+ * فتح القائمة المنسدلة للجوال.
+ */
+function openMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const openIcon = document.getElementById('menuIconOpen');
+    const closeIcon = document.getElementById('menuIconClose');
+    menu.classList.remove('hidden');
+    menu.classList.add('open'); // Add class to trigger transition
+    openIcon.classList.add('hidden');
+    closeIcon.classList.remove('hidden');
+}
+
+/**
+ * إغلاق القائمة المنسدلة للجوال.
+ */
+function closeMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const openIcon = document.getElementById('menuIconOpen');
+    const closeIcon = document.getElementById('menuIconClose');
+    menu.classList.remove('open'); // Remove class to trigger transition
+    // Add hidden after transition (match duration in CSS)
+    setTimeout(() => {
+        menu.classList.add('hidden'); 
+    }, 300); 
+    openIcon.classList.remove('hidden');
+    closeIcon.classList.add('hidden');
+}
+
 // عند تحميل الصفحة
 window.onload = function() {
     // 1. استرجاع حالة اللغة المحفوظة
@@ -290,45 +293,62 @@ window.onload = function() {
     const themeIcon = document.getElementById('themeIcon');
 
     if (savedTheme === 'light') {
+        // Apply light theme classes and icon
         htmlElement.classList.remove('dark');
         htmlElement.classList.add('light');
         themeIcon.setAttribute('data-lucide', 'moon');
-        currentTheme = 'light';
     } else {
          // Default is Dark Mode
         htmlElement.classList.remove('light');
         htmlElement.classList.add('dark');
         themeIcon.setAttribute('data-lucide', 'sun');
-        currentTheme = 'dark';
     }
 
     // 3. تطبيق الحالة
     updateContent();
 
-    // 4. ربط الأزرار والـ Event Listeners
+    // 4. ربط الأزرار
     document.getElementById('langToggle').addEventListener('click', switchLanguage);
     document.getElementById('themeToggle').addEventListener('click', switchTheme);
     
-    // ربط أزرار قائمة الجوال
+    // ربط زر القائمة المنبثقة
     const mobileMenuButton = document.getElementById('mobileMenuButton');
-    if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMobileMenu);
-    
-    const closeMenuButton = document.getElementById('closeMenuButton');
-    if (closeMenuButton) closeMenuButton.addEventListener('click', closeMobileMenu);
-    
-    // 5. جعل الروابط الأقسام تعمل بسلاسة وإغلاق قائمة الجوال
+    const mobileMenu = document.getElementById('mobileMenu');
+    if(mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', () => {
+             // Check based on 'open' class for better state management
+             if (mobileMenu.classList.contains('open')) {
+                 closeMobileMenu();
+             } else {
+                 openMobileMenu();
+             }
+        });
+    }
+
+    // إغلاق القائمة عند النقر على أي رابط فيها
+    if (mobileMenu) {
+         mobileMenu.querySelectorAll('a').forEach(link => {
+             link.addEventListener('click', closeMobileMenu);
+         });
+    }
+
+    // 5. جعل الروابط الأقسام تعمل بسلاسة
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
-            // إغلاق قائمة الجوال إذا تم الضغط على رابط من داخلها
-            if (this.classList.contains('mobile-nav-link')) {
-                closeMobileMenu();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                // Smooth scroll
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open after clicking a link
+                if (mobileMenu && mobileMenu.classList.contains('open')) {
+                    closeMobileMenu();
+                }
             }
-
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
         });
     });
 };
+
