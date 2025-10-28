@@ -75,12 +75,12 @@ const translations = {
             programming: [
                 { name: "SQL", icon: "database", color: "text-blue-400" },
                 { name: "Python (In Progress)", icon: "code", color: "text-yellow-400" },
-                { name: "HTML (In Progress)", icon: "figma", color: "text-red-500" },
+                { name: "HTML (In Progress)", icon: "square-stack", color: "text-red-500" },
                 { name: "CSS (In Progress)", icon: "palette", color: "text-sky-400" },
                 { name: "JavaScript (In Progress)", icon: "zap", color: "text-amber-400" }
             ],
             design: [
-                { name: "Figma (UI/UX Design)", icon: "square-stack", color: "text-pink-500" }
+                { name: "Figma (UI/UX Design)", icon: "figma", color: "text-pink-500" }
             ],
             soft: [
                 { name: "Teamwork", icon: "users", color: "text-emerald-400" }, 
