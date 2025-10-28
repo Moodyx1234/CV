@@ -153,7 +153,7 @@ body {
     color: white; 
 }
 .light #x-button img {
-    filter: invert(100%); /* عكس الصورة (الأبيض يصبح أسود) */
+    filter: none; /* عكس الصورة (الأبيض يصبح أسود) */
 }
 .dark #x-button img {
     filter: none; /* إزالة الانعكاس، الصورة البيضاء تبقى بيضاء */
@@ -192,3 +192,4 @@ html[dir="rtl"] .nav-controls {
     color: #059669;
     border-bottom-color: #059669;
 }
+
